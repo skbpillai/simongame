@@ -1,0 +1,101 @@
+js algo:
+
+Button ID/Color     Button No   Button Alpha
+green               1           I
+red                 2           O
+yellow              3           K
+blue                4           L
+
+gameOn = false;
+listenOn = false;
+roundNo = 0;
+inputSeq = "";
+respSeq = "";
+
+
+on (keypress) {
+    if (key is space) {
+        // code for html change;
+        gameOn = true;
+    }
+}
+
+on (button click) {
+    if (gameOn && listenOn) {
+        get buttonID;
+        animateButton(buttonID);
+        newResp = convertBtnIdToNote(buttonID);
+        respSeq = respSeq + newResp;
+
+        if (len(respSeq) < roundNo) {
+            matchResult = checkPassFail(left(inputSeq,roundNo),respSeq);
+            if matchResult = "pass" {
+                listenOn = true;
+            }
+            if matchResult = "fail" {
+                playFailAnim (); // ensure gameOn is made false in playFailAnim
+            }
+        }
+
+        if(len(respSeq) = roundNo) {
+            matchResult = checkPassFail(inputSeq,respSeq);
+            if matchResult = "pass" {
+                listenOn = false;
+            }
+            if matchResult = "fail" {
+                playFailAnim (); // ensure gameOn is made false in playFailAnim
+            }
+        }
+
+    }
+
+
+
+    if (gameOn && !listenOn) {
+        roundNo++;
+        var newNote = generateRandomNote();
+        inputSeq = inputSeq + newNote;
+        playInputSeq(inputSeq);
+        listenOn = true;
+    }
+}
+
+
+
+
+
+
+function startListenForSpace() {
+    on(space click) {
+        //set html change for game on mode;
+        gameOn = true;
+    }
+}
+
+
+function generateRandomNote () {
+    // code for generating random note and converting to alpha
+    return randomNote;
+}
+
+function playInputSeq (inputSeq) {
+    // for loop code for playing input sequence with animation and sound
+}
+
+function convertBtnIdToNote (buttonID) {
+    // code to map buttonID to alpha
+    return buttonAlpha;
+}
+
+function checkPassFail (inS,resS) {
+    // code to compare input and response sequences
+    return "pass" or "fail"
+}
+
+function playFailAnim () {
+    // code to flash the body background, set gameOn to false, listenOn to false, startListenForSpace + continue start
+}
+
+function animateButton (btnID) {
+    // code for button press animation
+}
