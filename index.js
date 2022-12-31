@@ -12,6 +12,18 @@ var respSeq = "";
 var isPaused = false;
 var playSpeed = 500;
 
+$("h1").click(function () {
+    if (!gameOn) {
+        gameOn = true;
+        listenOn = false;
+        roundNo = 0;
+        inputSeq = "";
+        respSeq = "";
+        console.log("Game Started via h1 Click");
+        playNextRound();
+    }
+});
+
 $("body").keypress(function (event) {
     if(!gameOn && event.key == " ") {
         gameOn = true;
